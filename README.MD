@@ -40,7 +40,12 @@ COSMOS_DB_KEY=your-secret-cosmos-db-key
 COSMOS_DB_DATABASE=your-database-name
 COSMOS_DB_CONTAINER=your-database-container
 ```
-- When testing `POST` request add to headers `application/json` and then send any `json` (atm there is no restriction for JSON)
+- When testing `POST` request add to headers `Content-Type` value `application/json` and then send any `json` (atm there is no restriction for JSON)
+
+## Troubleshooting
+- Check environment variables in Azure
+- Check access keys
+- Check `Partion Key` in Cosmo DB, atm it is `/partitionKey`
 
 ## TODO
 - regenerate key for Cosmo DB

@@ -12,8 +12,8 @@ const containerId = "ListOfPrompts";
 module.exports = async function (context, req) {
     try {
         // Připojení k databázi a kontejneru
-        const database = "AI_Prompt";
-        const container = "ListOfPrompts";
+        const database = client.database(databaseId); // Get the database object
+        const container = database.container(containerId); // Get the container object
 
         // Načtení všech položek v kontejneru
         const query = "SELECT * FROM c"; // Jednoduchý SQL dotaz

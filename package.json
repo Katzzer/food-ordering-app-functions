@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@azure/cosmos": "^4.2.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.4.7"
   },
   "scripts": {
     "start": "func start",

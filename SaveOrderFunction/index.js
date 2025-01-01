@@ -1,20 +1,18 @@
 const { CosmosClient } = require("@azure/cosmos");
 
-// Initialize Cosmos DB client
 const client = new CosmosClient({
-    endpoint: "https://pavelkostalcom.documents.azure.com:443/",
-    key: "rlqQp1cyMTHC93BHXl9aFL2HFItZ8sSlpxakpvbQgAbbdcz0gHOcBDG3herKjbv0jlhBjtE6KdDSACDbz42nmQ=="
+    endpoint: process.env.COSMOS_DB_ENDPOINT,
+    key: process.env.COSMOS_DB_KEY
 });
 
-const databaseId = "AI_Prompt";
-const containerId = "ListOfPrompts";
+const databaseId = process.env.COSMOS_DB_DATABASE;
+const containerId = process.env.COSMOS_DB_CONTAINER;
 
 module.exports = async function (context, req) {
     try {
         const database = client.database(databaseId);
         const container = database.container(containerId);
 
-        // Get data from the request body
         const requestData = req.body;
 
         if (!requestData) {
@@ -25,10 +23,8 @@ module.exports = async function (context, req) {
             return;
         }
 
-        // Insert data into Cosmos DB
         const { resource: newItem } = await container.items.create(requestData);
 
-        // Respond with the inserted data
         context.res = {
             status: 201,
             body: newItem
